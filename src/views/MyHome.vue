@@ -1,13 +1,11 @@
 <template>
   <div>
     <div class="box">
-      <div class="block-chain">{{ msg }}</div>
+      <div class="block-chain">{{ msg }}</div><br><br><br>
       <button @click="fun">获取链上数据</button>
     </div>
   </div>
 </template>
-
-
 <script>
 import Web3 from 'web3'
 export default {
@@ -30,26 +28,24 @@ export default {
           "type": "function"
         }
       ],
-      address: "0x572cd64A9E2aEd46D021A546bCA2b4846bc92F06"
+      address: "0xCC859e88AA3F0b7f13fb6e9Fd1acEE1Bf5d468e3"
     }
   },
   methods: {
-    async fun () {
-      // console.log(new Web3(Web3.givenProvider));
-      const web3 = new Web3('HTTP://127.0.0.1:7545')
-      console.log(web3);
-      // 通过ABI和地址获取已部署的合约对象
-      const contract = new web3.eth.Contract(this.abi, this.address)
+     async fun () {
+      // 连接到以太坊节点
+      const web3 = new Web3("https://rpc.sepolia.org");
+      // 创建合约实例
+      const contract = new web3.eth.Contract(this.abi,this.address)
       console.log(contract);
-      this.msg = await contract.methods.getName().call();
+      // 获取合约数据
+      let result = await contract.methods.getName().call();
+      this.msg = result
+      console.log(result)
     }
   }
 }
-
-
 </script>
-
-
 <style scoped>
 *{
   margin: 0;
