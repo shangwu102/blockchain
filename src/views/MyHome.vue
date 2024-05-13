@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="box">
-      <div class="block-chain">{{ msg }}</div><br><br><br>
-      <button @click="fun">获取链上数据</button>
+      <div class="block-chain">
+        <div>链上数据：<span>{{ msg }}</span></div>
+        <div>部署合约时的区块高度：<span>{{ blockNumber }}</span></div>
+        <div>当前区块高度：<span>{{ blockNumberNow }}</span></div>
+      </div>
+      <button @click="getMsg">获取链上数据</button>
+      <button @click="getBlockNumber">获取部署合约时的区块高度</button>
+      <button @click="getblockNumberNow">获取当前区块高度</button>
     </div>
   </div>
 </template>
@@ -13,7 +19,27 @@ export default {
   data () {
     return {
       msg: '',
+      blockNumberNow:'',// 当前区块高度
+      blockNumber:'', // 部署合约时高度
       abi: [
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "name": "getBlockNumber",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
         {
           "inputs": [],
           "name": "getName",
@@ -28,20 +54,36 @@ export default {
           "type": "function"
         }
       ],
-      address: "0xCC859e88AA3F0b7f13fb6e9Fd1acEE1Bf5d468e3"
+      address: "0x9576991040B7b17352bF93b67Aa8e5ca6977474A"
+    }
+  },
+  computed: {
+    web3() {
+      // 连接到以太坊节点
+      return new Web3("https://rpc.sepolia.org");
+      
+    },
+    contract() {
+      // 创建合约实例
+      return new this.web3.eth.Contract(this.abi, this.address)
     }
   },
   methods: {
-     async fun () {
-      // 连接到以太坊节点
-      const web3 = new Web3("https://rpc.sepolia.org");
-      // 创建合约实例
-      const contract = new web3.eth.Contract(this.abi,this.address)
-      console.log(contract);
+     async getMsg () {
       // 获取合约数据
-      let result = await contract.methods.getName().call();
-      this.msg = result
-      console.log(result)
+      const msg = await this.contract.methods.getName().call();
+      this.msg = msg
+    },
+    async getblockNumberNow () {
+      // 获取部署合约时的区块高度
+      const blockNumber = await this.contract.methods.getBlockNumber().call();
+      this.blockNumber = blockNumber
+    },
+    getBlockNumber() {
+      // 获取当前的区块高度
+      this.web3.eth.getBlockNumber().then(blockNumber => {
+        this.blockNumberNow = blockNumber
+        })
     }
   }
 }
@@ -52,12 +94,21 @@ export default {
   padding: 0;
 }
 .block-chain {
-  width: 100px;
-  height: 20px;
+  width: 400px;
+  height: 100px;
+  /* background-color: aqua; */
 }
 .box {
-  width: 300px;
+  width: 500px;
   height: 300px;
+  /* background-color: blue; */
+}
+button {
+  margin-top: 20%;
+}
+span {
+  color: brown;
+  font-weight: bold;
 }
 
 
