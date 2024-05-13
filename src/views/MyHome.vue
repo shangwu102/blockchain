@@ -60,7 +60,7 @@ export default {
   computed: {
     web3() {
       // 连接到以太坊节点
-      return new Web3("https://rpc.sepolia.org");
+      return new Web3("https://mainnet.infura.io/v3/a7a1a799a2e94fa4899a1382743c9a34");
       
     },
     contract() {
@@ -74,12 +74,12 @@ export default {
       const msg = await this.contract.methods.getName().call();
       this.msg = msg
     },
-    async getblockNumberNow () {
+    async getBlockNumber () {
       // 获取部署合约时的区块高度
       const blockNumber = await this.contract.methods.getBlockNumber().call();
       this.blockNumber = blockNumber
     },
-    getBlockNumber() {
+    getblockNumberNow () {
       // 获取当前的区块高度
       this.web3.eth.getBlockNumber().then(blockNumber => {
         this.blockNumberNow = blockNumber
