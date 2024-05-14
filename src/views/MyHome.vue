@@ -4,14 +4,14 @@
       <div class="block-chain">
         <div>合约地址：<span>{{ address4 }}</span></div>
         <div>链上数据：<span>{{ msg }}</span></div>
-        <div>部署合约时的区块高度：<span>{{ blockNumber }}</span></div>
         <div>当前区块高度：<span>{{ blockNumberNow }}</span></div>
+        <div>部署合约时的区块高度：<span>{{ blockNumber }}</span></div>
         <div>部署合约时的时间：<span>{{ contractTime }}</span></div>
         <div>部署合约的账户余额：<span v-if="addressBalance">{{ addressBalance }} ether</span></div>
       </div>
       <button @click="getMsg">获取链上数据</button>
-      <button @click="getBlockNumber">获取部署合约时的区块高度</button>
-      <button @click="getBlockNumberNow">获取当前区块高度</button>
+      <button @click="getBlockNumber">获取当前区块高度</button>
+      <button @click="getBlockNumberNow">获取部署合约时的区块高度</button>
       <button @click="getDeployContractNow">获取部署合约时的时间</button>
       <button @click="getAddressBalance">获取账户余额</button>
     </div>
