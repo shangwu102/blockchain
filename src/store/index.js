@@ -50,7 +50,9 @@ const store = new Vuex.Store({
       }
     ],
     address1:"0x1C7F0bb4e77F62b4996898D549Cc105782BF72Cf",
-    address2: "0xFf55C4CD9BF02D6A3ce70Ee525ed0b30BbA968C2"
+    address2: "0xFf55C4CD9BF02D6A3ce70Ee525ed0b30BbA968C2",
+    address3:"0x135B09c6515e7e447285cC4CD57B1B0debB9046A",
+    address4:"0x2B0C18a10241434883bC290c1818a84fc4b6F852"
   },
   mutations:{
 

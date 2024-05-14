@@ -2,7 +2,7 @@
   <div>
     <div class="box">
       <div class="block-chain">
-        <div>合约地址：<span>{{ address2 }}</span></div>
+        <div>合约地址：<span>{{ address4 }}</span></div>
         <div>链上数据：<span>{{ msg }}</span></div>
         <div>部署合约时的区块高度：<span>{{ blockNumber }}</span></div>
         <div>当前区块高度：<span>{{ blockNumberNow }}</span></div>
@@ -32,7 +32,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['abi', 'address2']),
+    ...mapState(['abi', 'address4']),
     web3 () {
       // 连接到以太坊节点
       return new Web3("https://mainnet.infura.io/v3/a7a1a799a2e94fa4899a1382743c9a34");
@@ -40,7 +40,7 @@ export default {
     },
     contract () {
       // 创建合约实例
-      return new this.web3.eth.Contract(this.abi, this.address2)
+      return new this.web3.eth.Contract(this.abi, this.address4)
     }
   },
   methods: {
