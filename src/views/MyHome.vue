@@ -16,6 +16,7 @@
 </template>
 <script>
 import Web3 from 'web3'
+import {mapState} from 'vuex'
 export default {
   name: 'App',
   data () {
@@ -24,56 +25,10 @@ export default {
       blockNumberNow:'',// 当前区块高度
       blockNumber:'', // 部署合约时高度
       contractTime:'', // 部署合约时间
-      abi: [
-        {
-          "inputs": [],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "inputs": [],
-          "name": "getBlockNumber",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "getName",
-          "outputs": [
-            {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "getTimeStamp",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        }
-      ],
-      address: "0xFf55C4CD9BF02D6A3ce70Ee525ed0b30BbA968C2"
     }
   },
   computed: {
+    ...mapState(['abi', 'address']),
     web3() {
       // 连接到以太坊节点
       return new Web3("https://mainnet.infura.io/v3/a7a1a799a2e94fa4899a1382743c9a34");
@@ -85,6 +40,7 @@ export default {
     }
   },
   methods: {
+    
      async getMsg () {
       // 获取合约数据
       const msg = await this.contract.methods.getName().call();
