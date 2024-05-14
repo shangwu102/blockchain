@@ -102,14 +102,10 @@ export default {
         })
     },
     async getDeployContractNow() {
-      console.log(this.web3);
-      console.log(this.contract);
       // 获取的时间戳
       const timestamp = await this.contract.methods.getTimeStamp().call();
-
       // 创建一个新的 Date 对象，将时间戳作为参数传入
       const date = new Date(String(timestamp) * 1000); // 注意需要乘以1000以将秒转换为毫秒
-
       // 获取年、月、日、小时、分钟和秒
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从 0 开始，需要加 1，并确保两位数格式
@@ -117,7 +113,6 @@ export default {
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
       const seconds = String(date.getSeconds()).padStart(2, '0');
-
       // 拼接成日期时间字符串
       const contractTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
       this.contractTime = contractTime
