@@ -1,39 +1,24 @@
 <template>
   <div>
-    <button @click="fun"></button>
+    <button @click="fun">按钮</button>
   </div>
 </template>
 <script>
+import Web3 from 'web3'
 export default {
   name: 'App',
-
+  methods:{
+    fun() {
+      const web3 = new Web3(Web3.givenProvider)
+      console.log(web3);
+      console.log(Web3.version);
+      console.log(Web3.modules);
+      console.log(Web3.utils);
+    }
+  }
 }
       
 </script>
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
 
-.block-chain {
-  width: 400px;
-  height: 100px;
-  /* background-color: aqua; */
-}
-
-.box {
-  width: 500px;
-  height: 300px;
-  /* background-color: blue; */
-}
-
-button {
-  margin-top: 20%;
-}
-
-span {
-  color: brown;
-  font-weight: bold;
-}
 </style>

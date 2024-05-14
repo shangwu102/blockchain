@@ -49,7 +49,8 @@ const store = new Vuex.Store({
         "type": "function"
       }
     ],
-    address: "0xFf55C4CD9BF02D6A3ce70Ee525ed0b30BbA968C2"
+    address1:"0x1C7F0bb4e77F62b4996898D549Cc105782BF72Cf",
+    address2: "0xFf55C4CD9BF02D6A3ce70Ee525ed0b30BbA968C2"
   },
   mutations:{
 
